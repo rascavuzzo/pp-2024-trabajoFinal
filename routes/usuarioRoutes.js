@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const personaController = require("../controllers/personaController");
+const usuarioController = require("../controllers/usuarioController");
+const auth = require("../middlewares/authmiddleware");
+const upload = require("../middlewares/uploadMiddleware");
 
 router.post("/register", usuarioController.register);
-
-module.exports = router;
+router. put("/me/:id", auth, upload.single('avater'), usuarioController.update);
